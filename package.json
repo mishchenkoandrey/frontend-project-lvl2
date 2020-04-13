@@ -1,0 +1,43 @@
+{
+  "name": "frontend-project-lvl2",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "difference calculator"
+  ],
+  "main": "dist/index.js",
+  "bin": {
+    "gendiff": "dist/bin/gendiff.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "jest",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mishchenkoandrey/frontend-project-lvl2.git"
+  },
+  "author": "Andrey Mishchenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mishchenkoandrey/frontend-project-lvl2/issues"
+  },
+  "homepage": "https://github.com/mishchenkoandrey/frontend-project-lvl2#readme",
+  "dependencies": {
+    "commander": "^5.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-proposal-pipeline-operator": "^7.8.3",
+    "@babel/preset-env": "^7.9.5"
+  }
+}
