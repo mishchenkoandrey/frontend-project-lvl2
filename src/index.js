@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-export default (pathToFile1, pathToFile2) => {
+const genDiff = (pathToFile1, pathToFile2) => {
   const data1 = JSON.parse(fs.readFileSync(pathToFile1, 'utf-8'));
   const data2 = JSON.parse(fs.readFileSync(pathToFile2, 'utf-8'));
   const data1keys = Object.keys(data1);
@@ -10,7 +10,7 @@ export default (pathToFile1, pathToFile2) => {
     if (data1keys.includes(key) && data2keys.includes(key)) {
       return data1[key] === data2[key]
         ? [...acc, `    ${key}: ${data1[key]}`]
-        : [...acc, `  + ${key}: ${data2[key]}`, `  + ${key}: ${data1[key]}`];
+        : [...acc, `  + ${key}: ${data2[key]}`, `  - ${key}: ${data1[key]}`];
     }
     return data1keys.includes(key)
       ? [...acc, `  - ${key}: ${data1[key]}`]
@@ -19,3 +19,7 @@ export default (pathToFile1, pathToFile2) => {
   const result = dataKeys.reduce(add, []);
   return `{\n${result.join('\n')}\n}`;
 };
+
+module.exports = genDiff;
+
+export default genDiff;

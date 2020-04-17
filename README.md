@@ -1,2 +1,4 @@
 [![Node CI](https://github.com/mishchenkoandrey/frontend-project-lvl2/workflows/Node%20CI/badge.svg)](https://github.com/mishchenkoandrey/frontend-project-lvl2/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1345e84d6a8a763d1aa7/maintainability)](https://codeclimate.com/github/mishchenkoandrey/frontend-project-lvl2/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/mishchenkoandrey/frontend-project-lvl2/test_coverage)
+[![asciicast](https://asciinema.org/a/BIZ05FkGMiDcGqwqdrSrcg4r7.svg)](https://asciinema.org/a/BIZ05FkGMiDcGqwqdrSrcg4r7)
