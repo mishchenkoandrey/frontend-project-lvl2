@@ -1,13 +1,9 @@
 #!/usr/bin/env node
 "use strict";
 
-var _commander = require("commander");
-
-var _index = _interopRequireDefault(require("../index.js"));
+var _cliBuilder = _interopRequireDefault(require("../cli-builder"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_commander.program.command('gendiff <firstConfig> <secondConfig>').version('0.0.1').description('Compares two configuration files and shows a difference.').option('-f, --format [type]', 'output format').action((firstConfig, secondConfig) => {
-  console.log((0, _index.default)(firstConfig, secondConfig));
-}).parse(process.argv);
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9iaW4vZ2VuZGlmZi5qcyJdLCJuYW1lcyI6WyJwcm9ncmFtIiwiY29tbWFuZCIsInZlcnNpb24iLCJkZXNjcmlwdGlvbiIsIm9wdGlvbiIsImFjdGlvbiIsImZpcnN0Q29uZmlnIiwic2Vjb25kQ29uZmlnIiwiY29uc29sZSIsImxvZyIsInBhcnNlIiwicHJvY2VzcyIsImFyZ3YiXSwibWFwcGluZ3MiOiJBQUFBOzs7QUFFQTs7QUFFQTs7OztBQUVBQSxtQkFDR0MsT0FESCxDQUNXLHNDQURYLEVBRUdDLE9BRkgsQ0FFVyxPQUZYLEVBR0dDLFdBSEgsQ0FHZSwwREFIZixFQUlHQyxNQUpILENBSVUscUJBSlYsRUFJaUMsZUFKakMsRUFLR0MsTUFMSCxDQUtVLENBQUNDLFdBQUQsRUFBY0MsWUFBZCxLQUErQjtBQUNyQ0MsRUFBQUEsT0FBTyxDQUFDQyxHQUFSLENBQVksb0JBQVFILFdBQVIsRUFBcUJDLFlBQXJCLENBQVo7QUFDRCxDQVBILEVBUUdHLEtBUkgsQ0FRU0MsT0FBTyxDQUFDQyxJQVJqQiIsInNvdXJjZXNDb250ZW50IjpbIiMhL3Vzci9iaW4vZW52IG5vZGVcblxuaW1wb3J0IHsgcHJvZ3JhbSB9IGZyb20gJ2NvbW1hbmRlcic7XG5cbmltcG9ydCBnZW5EaWZmIGZyb20gJy4uL2luZGV4LmpzJztcblxucHJvZ3JhbVxuICAuY29tbWFuZCgnZ2VuZGlmZiA8Zmlyc3RDb25maWc+IDxzZWNvbmRDb25maWc+JylcbiAgLnZlcnNpb24oJzAuMC4xJylcbiAgLmRlc2NyaXB0aW9uKCdDb21wYXJlcyB0d28gY29uZmlndXJhdGlvbiBmaWxlcyBhbmQgc2hvd3MgYSBkaWZmZXJlbmNlLicpXG4gIC5vcHRpb24oJy1mLCAtLWZvcm1hdCBbdHlwZV0nLCAnb3V0cHV0IGZvcm1hdCcpXG4gIC5hY3Rpb24oKGZpcnN0Q29uZmlnLCBzZWNvbmRDb25maWcpID0+IHtcbiAgICBjb25zb2xlLmxvZyhnZW5EaWZmKGZpcnN0Q29uZmlnLCBzZWNvbmRDb25maWcpKTtcbiAgfSlcbiAgLnBhcnNlKHByb2Nlc3MuYXJndik7XG4iXX0=
+(0, _cliBuilder.default)();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9iaW4vZ2VuZGlmZi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7O0FBRUE7Ozs7QUFFQSIsInNvdXJjZXNDb250ZW50IjpbIiMhL3Vzci9iaW4vZW52IG5vZGVcblxuaW1wb3J0IGdlbmRpZmYgZnJvbSAnLi4vY2xpLWJ1aWxkZXInO1xuXG5nZW5kaWZmKCk7XG4iXX0=

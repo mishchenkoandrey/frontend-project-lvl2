@@ -1,39 +1,10 @@
 import parse from './parsers.js';
 
-const space = '  ';
+import formatter from './formatters/formatter.js';
 
-let spacesCount = 0;
+import formatterPlain from './formatters/formatterPlain.js';
 
-const stringify = (value) => {
-  const keys = Object.keys(value);
-  const result = keys.map((key) => `${space.repeat(spacesCount + 1)}${key}: ${value[key]}`);
-  return `{\n  ${result.join('\n')}\n  ${space.repeat(spacesCount - 1)}}`;
-};
-
-const getSign = (sign) => {
-  switch (sign) {
-    case 'added':
-      return '+ ';
-    case 'removed':
-      return '- ';
-    default:
-      return '  ';
-  }
-};
-
-const formatter = (diff) => {
-  const add = (acc, item) => {
-    spacesCount += 2;
-    const result = Array.isArray(item[1])
-      ? [...acc, `${space.repeat(spacesCount - 1)}${getSign(item[2])}${item[0]}: ${formatter(item[1])}\n`]
-      : [...acc, `${space.repeat(spacesCount - 1)}${getSign(item[2])}${item[0]}: ${typeof item[1] === 'object' ? stringify(item[1]) : item[1]}\n`];
-    spacesCount -= 2;
-    return result;
-  };
-  return `{\n${diff.reduce(add, []).join('')}${space.repeat(spacesCount)}}`;
-};
-
-const genDiff = (pathToFile1, pathToFile2) => {
+const genDiff = (pathToFile1, pathToFile2, format) => {
   const dataFile1 = parse(pathToFile1);
   const dataFile2 = parse(pathToFile2);
   const iter = (data1, data2) => {
@@ -47,15 +18,15 @@ const genDiff = (pathToFile1, pathToFile2) => {
         }
         return typeof data1[key] === 'object' && typeof data2[key] === 'object'
           ? [...acc, [key, iter(data1[key], data2[key])]]
-          : [...acc, [key, data2[key], 'added'], [key, data1[key], 'removed']];
+          : [...acc, [key, data2[key], 'added'], [key, data1[key], 'deleted']];
       }
       return data1keys.includes(key)
-        ? [...acc, [key, data1[key], 'removed']]
+        ? [...acc, [key, data1[key], 'deleted']]
         : [...acc, [key, data2[key], 'added']];
     };
     return dataKeys.reduce(add, []);
   };
-  return formatter(iter(dataFile1, dataFile2));
+  return format === 'plain' ? formatterPlain(iter(dataFile1, dataFile2)) : formatter(iter(dataFile1, dataFile2));
 };
 
 module.exports = genDiff;
