@@ -12,23 +12,26 @@ const formatValue = (value) => {
 };
 
 const formatterPlain = (diff) => {
-  const add = (acc, item, index, items) => {
-    if (items[index + 1] && items[index][0] === items[index + 1][0]) {
-      return [...acc, `Property '${[...keyAcc, item[0]].join('.')}' was changed from ${formatValue(items[index + 1][1])} to ${formatValue(items[index][1])}`];
+  const diffKeys = Object.keys(diff);
+  const add = (acc, key) => {
+    if (diff[key].status === 'changed') {
+      return [...acc, `Property '${[...keyAcc, [key]].join('.')}' was changed from ${formatValue(diff[key].value.previous)} to ${formatValue(diff[key].value.current)}`];
     }
-    if (item[2]
-    && (!items[index - 1] || (items[index - 1] && items[index][0] !== items[index - 1][0]))) {
-      return [...acc, `${item[2] === 'added' ? `Property '${[...keyAcc, item[0]].join('.')}' was added with value: ${formatValue(item[1])}` : `Property '${[...keyAcc, item[0]].join('.')}' was deleted`}`];
+    if (diff[key].status === 'added') {
+      return [...acc, `Property '${[...keyAcc, [key]].join('.')}' was added with value: ${formatValue(diff[key].value)}`];
     }
-    if (Array.isArray(item[1])) {
-      keyAcc.push(item[0]);
-      const result = [...acc, `${formatterPlain(item[1])}`];
+    if (diff[key].status === 'deleted') {
+      return [...acc, `Property '${[...keyAcc, [key]].join('.')}' was deleted`];
+    }
+    if (diff[key].children) {
+      keyAcc.push([key]);
+      const result = [...acc, `${formatterPlain(diff[key].children)}`];
       keyAcc.pop();
       return result;
     }
     return [...acc];
   };
-  return `${diff.reduce(add, []).join('\n')}`;
+  return `${diffKeys.reduce(add, []).join('\n')}`;
 };
 
 export default formatterPlain;
