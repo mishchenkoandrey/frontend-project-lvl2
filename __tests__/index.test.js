@@ -1,7 +1,5 @@
 import fs from 'fs';
 
-import process from 'process';
-
 import genDiff from '../src/index';
 
 const pairsOfFilenames = [['before.json', 'after.json'], ['before.yml', 'after.yml'], ['before.ini', 'after.ini']];
