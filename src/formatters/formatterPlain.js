@@ -11,7 +11,7 @@ const formatValue = (value) => {
   }
 };
 
-const formatterPlain = (diff) => {
+const outputToPlain = (diff) => {
   const diffKeys = Object.keys(diff);
   const add = (acc, key) => {
     if (diff[key].status === 'changed') {
@@ -25,7 +25,7 @@ const formatterPlain = (diff) => {
     }
     if (diff[key].children) {
       keyAcc.push([key]);
-      const result = [...acc, `${formatterPlain(diff[key].children)}`];
+      const result = [...acc, `${outputToPlain(diff[key].children)}`];
       keyAcc.pop();
       return result;
     }
@@ -34,4 +34,4 @@ const formatterPlain = (diff) => {
   return `${diffKeys.reduce(add, []).join('\n')}`;
 };
 
-export default formatterPlain;
+export default outputToPlain;

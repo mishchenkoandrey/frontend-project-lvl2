@@ -6,42 +6,22 @@ import yaml from 'js-yaml';
 
 import ini from 'ini';
 
-export default (pathToFile) => {
-  const fileFormat = path.extname(pathToFile);
-  const data = fs.readFileSync(pathToFile, 'utf-8');
+const parse = (fileFormat, fileData) => {
   switch (fileFormat) {
     case '.json':
-      return JSON.parse(data);
+      return JSON.parse(fileData);
     case '.yml':
-      return yaml.safeLoad(data);
+      return yaml.safeLoad(fileData);
     case '.ini':
-      return ini.parse(data);
+      return ini.parse(fileData);
     default:
       throw new Error(`Unknown format: '${fileFormat}'!`);
   }
 };
 
-const getFileFormat = (pathToFile) => path.extname(pathToFile);
-
-const getParsedValue = (pathToFile, value) => {
-  if (getFileFormat(pathToFile) === '.ini') {
-    const iter = (subValue) => {
-      if (typeof subValue === 'string') {
-        return Number(subValue) ? Number(subValue) : subValue;
-      }
-      if (typeof subValue === 'number') {
-        return value.toString();
-      }
-      if (typeof subValue === 'object') {
-        const valueKeys = Object.keys(subValue);
-        const add = (acc, key) => ({ ...acc, [key]: iter(subValue[key]) });
-        return valueKeys.reduce(add, {});
-      }
-      return subValue;
-    };
-    return iter(value);
-  }
-  return value;
+export default (pathToFile) => {
+  const fileFormat = path.extname(pathToFile);
+  const fileData = fs.readFileSync(pathToFile, 'utf-8');
+  const parsedFileData = parse(fileFormat, fileData);
+  return [parsedFileData, fileFormat];
 };
-
-export { getParsedValue };

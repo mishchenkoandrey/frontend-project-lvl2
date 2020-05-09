@@ -19,12 +19,12 @@ const getSign = (sign) => {
   }
 };
 
-const formatter = (diff) => {
+const output = (diff) => {
   const diffKeys = Object.keys(diff);
   const add = (acc, key) => {
     spacesCount += 2;
     const result = diff[key].children
-      ? [...acc, `${space.repeat(spacesCount)}${key}: ${formatter(diff[key].children)}\n`]
+      ? [...acc, `${space.repeat(spacesCount)}${key}: ${output(diff[key].children)}\n`]
       : [...acc, diff[key].status === 'changed'
         ? `${space.repeat(spacesCount - 1)}+ ${key}: ${typeof diff[key].value.current === 'object'
           ? stringify(diff[key].value.current)
@@ -40,4 +40,4 @@ const formatter = (diff) => {
   return `{\n${diffKeys.reduce(add, []).join('')}${space.repeat(spacesCount)}}`;
 };
 
-export default formatter;
+export default output;
