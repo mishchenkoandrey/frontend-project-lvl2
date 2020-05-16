@@ -30,7 +30,7 @@ const outputToPlain = (diff) => {
     }
     return [...acc];
   };
-  return `${diff.reduce(add, []).join('\n')}`
+  return `${diff.reduce(add, []).join('\n')}`;
 };
 
 export default outputToPlain;

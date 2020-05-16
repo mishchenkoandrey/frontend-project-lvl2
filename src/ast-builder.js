@@ -11,7 +11,9 @@ const genAST = (data1, data2, fileFormat) => {
       }
       return typeof data1[key] === 'object' && typeof data2[key] === 'object'
         ? [...acc, { name: key, children: genAST(data1[key], data2[key], fileFormat) }]
-        : [...acc, { name: key, status: 'changed', previousValue: getParsedValue(fileFormat, data1[key]), currentValue: getParsedValue(fileFormat, data2[key]) }];
+        : [...acc, {
+          name: key, status: 'changed', previousValue: getParsedValue(fileFormat, data1[key]), currentValue: getParsedValue(fileFormat, data2[key]),
+        }];
     }
     return _.has(data1, key)
       ? [...acc, { name: key, status: 'deleted', value: getParsedValue(fileFormat, data1[key]) }]
