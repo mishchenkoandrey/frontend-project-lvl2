@@ -1,12 +1,8 @@
-import path from 'path';
-
-import fs from 'fs';
-
 import yaml from 'js-yaml';
 
 import ini from 'ini';
 
-const parse = (fileFormat, fileData) => {
+export default (fileFormat, fileData) => {
   switch (fileFormat) {
     case '.json':
       return JSON.parse(fileData);
@@ -19,9 +15,25 @@ const parse = (fileFormat, fileData) => {
   }
 };
 
-export default (pathToFile) => {
-  const fileFormat = path.extname(pathToFile);
-  const fileData = fs.readFileSync(pathToFile, 'utf-8');
-  const parsedFileData = parse(fileFormat, fileData);
-  return [parsedFileData, fileFormat];
+const getParsedValue = (fileFormat, value) => {
+  if (fileFormat === '.ini') {
+    const iter = (subValue) => {
+      if (typeof subValue === 'string') {
+        return Number(subValue) ? Number(subValue) : subValue;
+      }
+      if (typeof subValue === 'number') {
+        return value.toString();
+      }
+      if (typeof subValue === 'object') {
+        const valueKeys = Object.keys(subValue);
+        const add = (acc, key) => ({ ...acc, [key]: iter(subValue[key]) });
+        return valueKeys.reduce(add, {});
+      }
+      return subValue;
+    };
+    return iter(value);
+  }
+  return value;
 };
+
+export { getParsedValue };

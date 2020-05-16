@@ -20,24 +20,23 @@ const getSign = (sign) => {
 };
 
 const output = (diff) => {
-  const diffKeys = Object.keys(diff);
-  const add = (acc, key) => {
+  const add = (acc, item) => {
     spacesCount += 2;
-    const result = diff[key].children
-      ? [...acc, `${space.repeat(spacesCount)}${key}: ${output(diff[key].children)}\n`]
-      : [...acc, diff[key].status === 'changed'
-        ? `${space.repeat(spacesCount - 1)}+ ${key}: ${typeof diff[key].value.current === 'object'
-          ? stringify(diff[key].value.current)
-          : diff[key].value.current}\n${space.repeat(spacesCount - 1)}- ${key}: ${typeof diff[key].value.previous === 'object'
-          ? stringify(diff[key].value.previous)
-          : diff[key].value.previous}\n`
-        : `${space.repeat(spacesCount - 1)}${getSign(diff[key].status)}${key}: ${typeof diff[key].value === 'object'
-          ? stringify(diff[key].value)
-          : diff[key].value}\n`];
+    const result = item.children
+      ? [...acc, `${space.repeat(spacesCount)}${item.name}: ${output(item.children)}\n`]
+      : [...acc, item.status === 'changed'
+        ? `${space.repeat(spacesCount - 1)}+ ${item.name}: ${typeof item.currentValue === 'object'
+          ? stringify(item.currentValue)
+          : item.currentValue}\n${space.repeat(spacesCount - 1)}- ${item.name}: ${typeof item.previousValue === 'object'
+          ? stringify(item.previousValue)
+          : item.previousValue}\n`
+        : `${space.repeat(spacesCount - 1)}${getSign(item.status)}${item.name}: ${typeof item.value === 'object'
+          ? stringify(item.value)
+          : item.value}\n`];
     spacesCount -= 2;
     return result;
   };
-  return `{\n${diffKeys.reduce(add, []).join('')}${space.repeat(spacesCount)}}`;
+  return `{\n${diff.reduce(add, []).join('')}${space.repeat(spacesCount)}}`;
 };
 
 export default output;

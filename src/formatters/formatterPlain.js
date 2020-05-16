@@ -12,26 +12,25 @@ const formatValue = (value) => {
 };
 
 const outputToPlain = (diff) => {
-  const diffKeys = Object.keys(diff);
-  const add = (acc, key) => {
-    if (diff[key].status === 'changed') {
-      return [...acc, `Property '${[...keyAcc, [key]].join('.')}' was changed from ${formatValue(diff[key].value.previous)} to ${formatValue(diff[key].value.current)}`];
+  const add = (acc, item) => {
+    if (item.status === 'changed') {
+      return [...acc, `Property '${[...keyAcc, item.name].join('.')}' was changed from ${formatValue(item.previousValue)} to ${formatValue(item.currentValue)}`];
     }
-    if (diff[key].status === 'added') {
-      return [...acc, `Property '${[...keyAcc, [key]].join('.')}' was added with value: ${formatValue(diff[key].value)}`];
+    if (item.status === 'added') {
+      return [...acc, `Property '${[...keyAcc, item.name].join('.')}' was added with value: ${formatValue(item.value)}`];
     }
-    if (diff[key].status === 'deleted') {
-      return [...acc, `Property '${[...keyAcc, [key]].join('.')}' was deleted`];
+    if (item.status === 'deleted') {
+      return [...acc, `Property '${[...keyAcc, item.name].join('.')}' was deleted`];
     }
-    if (diff[key].children) {
-      keyAcc.push([key]);
-      const result = [...acc, `${outputToPlain(diff[key].children)}`];
+    if (item.children) {
+      keyAcc.push(item.name);
+      const result = [...acc, `${outputToPlain(item.children)}`];
       keyAcc.pop();
       return result;
     }
     return [...acc];
   };
-  return `${diffKeys.reduce(add, []).join('\n')}`;
+  return `${diff.reduce(add, []).join('\n')}`
 };
 
 export default outputToPlain;

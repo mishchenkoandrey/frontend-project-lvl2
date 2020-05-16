@@ -1,4 +1,3 @@
-
 import { program } from 'commander';
 
 import { version, description } from '../package.json';
