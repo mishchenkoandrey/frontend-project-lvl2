@@ -20,7 +20,7 @@ const getSign = (sign) => {
 };
 
 const output = (diff) => {
-  const add = (acc, item) => {
+  const add = (item, acc = []) => {
     spacesCount += 2;
     const result = item.children
       ? [...acc, `${space.repeat(spacesCount)}${item.name}: ${output(item.children)}\n`]
@@ -36,7 +36,7 @@ const output = (diff) => {
     spacesCount -= 2;
     return result;
   };
-  return `{\n${diff.reduce(add, []).join('')}${space.repeat(spacesCount)}}`;
+  return `{\n${diff.flatMap((item) => add(item)).join('')}${space.repeat(spacesCount)}}`;
 };
 
 export default output;

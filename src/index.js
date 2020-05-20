@@ -15,11 +15,8 @@ const genDiff = (pathToFile1, pathToFile2, format) => {
   const file2format = path.extname(pathToFile2);
   const file2data = fs.readFileSync(pathToFile2, 'utf-8');
   const file2parsedData = parse(file2format, file2data);
-  if (file1format === file2format) {
-    const ast = genAST(file1parsedData, file2parsedData, file1format);
-    return chooseFormat(format, ast);
-  }
-  throw new Error('Mismatched file formats!');
+  const ast = genAST(file1parsedData, file2parsedData);
+  return chooseFormat(format, ast);
 };
 
 export default genDiff;

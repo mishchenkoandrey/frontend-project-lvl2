@@ -12,7 +12,7 @@ const formatValue = (value) => {
 };
 
 const outputToPlain = (diff) => {
-  const add = (acc, item) => {
+  const add = (item, acc = []) => {
     if (item.status === 'changed') {
       return [...acc, `Property '${[...keyAcc, item.name].join('.')}' was changed from ${formatValue(item.previousValue)} to ${formatValue(item.currentValue)}`];
     }
@@ -30,7 +30,7 @@ const outputToPlain = (diff) => {
     }
     return [...acc];
   };
-  return `${diff.reduce(add, []).join('\n')}`;
+  return `${diff.flatMap((item) => add(item)).join('\n')}`;
 };
 
 export default outputToPlain;
