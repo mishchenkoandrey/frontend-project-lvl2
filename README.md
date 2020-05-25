@@ -30,10 +30,10 @@
 [![asciicast](https://asciinema.org/a/mnBbZPMnN1RFYXqTO6EkLgTG6.svg)](https://asciinema.org/a/mnBbZPMnN1RFYXqTO6EkLgTG6)
 
 Рекурсивное сравнение (json) (вывод в json)
-[![asciicast](https://asciinema.org/a/HoNP8pur87piqP7bVbdJw1QlL.svg)](https://asciinema.org/a/HoNP8pur87piqP7bVbdJw1QlL)
+[![asciicast](https://asciinema.org/a/CPAKaxXlHDthWKNBnRxyMyfdF.svg)](https://asciinema.org/a/CPAKaxXlHDthWKNBnRxyMyfdF)
 
 Рекурсивное сравнение (yaml) (вывод в json)
-[![asciicast](https://asciinema.org/a/pHQ5IhTM4431ta8sUqaY6ziag.svg)](https://asciinema.org/a/pHQ5IhTM4431ta8sUqaY6ziag)
+[![asciicast](https://asciinema.org/a/IllNFodNKef4cL1FhYheT4Tbr.svg)](https://asciinema.org/a/IllNFodNKef4cL1FhYheT4Tbr)
 
 Рекурсивное сравнение (ini) (вывод в json)
-[![asciicast](https://asciinema.org/a/zhVjJQJLxsDOuBcumvkTrOuyn.svg)](https://asciinema.org/a/zhVjJQJLxsDOuBcumvkTrOuyn)
+[![asciicast](https://asciinema.org/a/817gT1aFhiZafJEqAiciGjFGN.svg)](https://asciinema.org/a/817gT1aFhiZafJEqAiciGjFGN)
