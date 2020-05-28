@@ -22,15 +22,15 @@ const getParsedValueOfINI = (data) => {
   return _.keys(data).reduce(add, {});
 };
 
-export default (fileFormat, fileData) => {
-  switch (fileFormat) {
+export default (extension, data) => {
+  switch (extension) {
     case '.json':
-      return JSON.parse(fileData);
+      return JSON.parse(data);
     case '.yml':
-      return yaml.safeLoad(fileData);
+      return yaml.safeLoad(data);
     case '.ini':
-      return getParsedValueOfINI(ini.parse(fileData));
+      return getParsedValueOfINI(ini.parse(data));
     default:
-      throw new Error(`Unknown format: '${fileFormat}'!`);
+      throw new Error(`Unsupported file format: '${extension}'!`);
   }
 };

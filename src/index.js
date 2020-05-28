@@ -8,14 +8,16 @@ import genAST from './ast-builder.js';
 
 import parse from './parsers.js';
 
+const readFile = (pathToFile) => {
+  const format = path.extname(pathToFile);
+  const data = fs.readFileSync(pathToFile, 'utf-8');
+  return parse(format, data);
+};
+
 const genDiff = (pathToFile1, pathToFile2, format) => {
-  const file1format = path.extname(pathToFile1);
-  const file1data = fs.readFileSync(pathToFile1, 'utf-8');
-  const file1parsedData = parse(file1format, file1data);
-  const file2format = path.extname(pathToFile2);
-  const file2data = fs.readFileSync(pathToFile2, 'utf-8');
-  const file2parsedData = parse(file2format, file2data);
-  const ast = genAST(file1parsedData, file2parsedData);
+  const data1 = readFile(pathToFile1);
+  const data2 = readFile(pathToFile2);
+  const ast = genAST(data1, data2);
   return chooseFormat(format, ast);
 };
 
