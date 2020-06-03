@@ -31,6 +31,6 @@ export default (extension, data) => {
     case '.ini':
       return getParsedValueOfINI(ini.parse(data));
     default:
-      throw new Error(`Unsupported file format: '${extension}'!`);
+      throw new Error(`Unsupported extension: '${extension}'!`);
   }
 };

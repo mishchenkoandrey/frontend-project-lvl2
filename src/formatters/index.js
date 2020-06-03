@@ -1,16 +1,16 @@
-import output from './formatter.js';
+import formatToVisual from './formatterVisual.js';
 
-import outputToPlain from './formatterPlain.js';
+import formatToPlain from './formatterPlain.js';
 
-import outputToJSON from './formatterJSON.js';
+import formatToJSON from './formatterJSON.js';
 
-export default (format, ast) => {
-  switch (format) {
+export default (outputFormat, ast) => {
+  switch (outputFormat) {
     case 'plain':
-      return outputToPlain(ast);
+      return formatToPlain(ast);
     case 'json':
-      return outputToJSON(ast);
+      return formatToJSON(ast);
     default:
-      return output(ast);
+      return formatToVisual(ast);
   }
 };

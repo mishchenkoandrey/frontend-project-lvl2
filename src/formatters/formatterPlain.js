@@ -9,24 +9,20 @@ const formatValue = (value) => {
   }
 };
 
-const iter = (diff, keySubAcc = []) => diff.flatMap((node) => {
-  const add = (item, keyAcc) => {
-    if (item.status === 'changed') {
-      return `Property '${keyAcc.join('.')}' was changed from ${formatValue(item.previousValue)} to ${formatValue(item.currentValue)}`;
+const iter = (diff, keySubAcc = []) => diff
+  .filter((node) => node.status !== 'unchanged')
+  .flatMap((node) => {
+    const keyAcc = keySubAcc ? [...keySubAcc, node.name] : node.name;
+    switch (node.status) {
+      case 'changed':
+        return `Property '${keyAcc.join('.')}' was changed from ${formatValue(node.previousValue)} to ${formatValue(node.currentValue)}`;
+      case 'added':
+        return `Property '${keyAcc.join('.')}' was added with value: ${formatValue(node.value)}`;
+      case 'deleted':
+        return `Property '${keyAcc.join('.')}' was deleted`;
+      default:
+        return `${iter(node.children, keyAcc).join('\n')}`;
     }
-    if (item.status === 'added') {
-      return `Property '${keyAcc.join('.')}' was added with value: ${formatValue(item.value)}`;
-    }
-    if (item.status === 'deleted') {
-      return `Property '${keyAcc.join('.')}' was deleted`;
-    }
-    if (item.children) {
-      return `${iter(item.children, keyAcc).join('\n')}`;
-    }
-    return [];
-  };
-  const keyAcc = keySubAcc ? [...keySubAcc, node.name] : node.name;
-  return add(node, keyAcc);
-});
+  });
 
 export default (diff) => `${iter(diff).join('\n')}`;

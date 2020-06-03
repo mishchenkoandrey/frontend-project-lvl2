@@ -4,6 +4,7 @@
     "children": [
       {
         "name": "setting1",
+        "status": "unchanged",
         "value": "Value 1"
       },
       {
@@ -24,6 +25,7 @@
         "children": [
           {
             "name": "key",
+            "status": "unchanged",
             "value": "value"
           },
           {
@@ -63,6 +65,7 @@
       },
       {
         "name": "foo",
+        "status": "unchanged",
         "value": "bar"
       },
       {
