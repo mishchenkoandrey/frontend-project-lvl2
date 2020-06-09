@@ -1,4 +1,4 @@
-import formatToVisual from './formatterVisual.js';
+import formatToStylish from './formatterStylish.js';
 
 import formatToPlain from './formatterPlain.js';
 
@@ -11,6 +11,6 @@ export default (outputFormat, ast) => {
     case 'json':
       return formatToJSON(ast);
     default:
-      return formatToVisual(ast);
+      return formatToStylish(ast);
   }
 };

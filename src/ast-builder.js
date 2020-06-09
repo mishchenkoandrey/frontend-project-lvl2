@@ -12,7 +12,7 @@ const genAST = (data1, data2) => {
     if (data1[key] === data2[key]) {
       return { name: key, status: 'unchanged', value: data1[key] };
     }
-    if (typeof data1[key] !== 'object' || typeof data2[key] !== 'object') {
+    if (!_.isObject(data1[key]) || !_.isObject(data2[key])) {
       return {
         name: key, status: 'changed', previousValue: data1[key], currentValue: data2[key],
       };
