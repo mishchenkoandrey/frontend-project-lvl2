@@ -1,6 +1,7 @@
 [
   {
     "name": "common",
+    "status": "parental",
     "children": [
       {
         "name": "setting1",
@@ -22,6 +23,7 @@
       },
       {
         "name": "setting6",
+        "status": "parental",
         "children": [
           {
             "name": "key",
@@ -56,6 +58,7 @@
   },
   {
     "name": "group1",
+    "status": "parental",
     "children": [
       {
         "name": "baz",

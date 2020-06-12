@@ -20,8 +20,10 @@ const iter = (diff, keySubAcc = []) => diff
         return `Property '${keyAcc.join('.')}' was added with value: ${formatValue(node.value)}`;
       case 'deleted':
         return `Property '${keyAcc.join('.')}' was deleted`;
-      default:
+      case 'parental':
         return `${iter(node.children, keyAcc).join('\n')}`;
+      default:
+        throw new Error(`Unknown node status: '${node.status}'!`);
     }
   });
 
