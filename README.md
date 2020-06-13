@@ -3,13 +3,13 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/mishchenkoandrey/frontend-project-lvl2/test_coverage)
 
 Сравнение плоских файлов (json)
-[![asciicast](https://asciinema.org/a/Y7CuDyD47hlB89gq8CvGk8AgL.svg)](https://asciinema.org/a/Y7CuDyD47hlB89gq8CvGk8AgL)
+[![asciicast](https://asciinema.org/a/hWTE4iq4Zogc47BaJCOuYNxiP.svg)](https://asciinema.org/a/hWTE4iq4Zogc47BaJCOuYNxiP)
 
 Сравнение плоских файлов (yaml)
-[![asciicast](https://asciinema.org/a/8EJcti2LlJC4ZZ618PuMhJFhj.svg)](https://asciinema.org/a/8EJcti2LlJC4ZZ618PuMhJFhj)
+[![asciicast](https://asciinema.org/a/4HXoFDNyKjmjnu8q3xcK3Vd1a.svg)](https://asciinema.org/a/4HXoFDNyKjmjnu8q3xcK3Vd1a)
 
 Сравнение плоских файлов (ini)
-[![asciicast](https://asciinema.org/a/x0tPTJAyaFRmGhEr6YKIr0XDK.svg)](https://asciinema.org/a/x0tPTJAyaFRmGhEr6YKIr0XDK)
+[![asciicast](https://asciinema.org/a/FwEHY8xFxFKa1Xe2tAKA4d4hp.svg)](https://asciinema.org/a/FwEHY8xFxFKa1Xe2tAKA4d4hp)
 
 Рекурсивное сравнение (json)
 [![asciicast](https://asciinema.org/a/mltmVVIFCeTN5UUaHfYpLqmGx.svg)](https://asciinema.org/a/mltmVVIFCeTN5UUaHfYpLqmGx)
