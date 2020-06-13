@@ -17,7 +17,7 @@ const genAST = (data1, data2) => {
         name: key, status: 'changed', previousValue: data1[key], currentValue: data2[key],
       };
     }
-    return { name: key, status: 'parental', children: genAST(data1[key], data2[key]) };
+    return { name: key, status: 'nested', children: genAST(data1[key], data2[key]) };
   };
   return dataKeys.map((key) => add(key));
 };

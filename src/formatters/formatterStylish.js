@@ -21,7 +21,7 @@ const iter = (diff, subDepth = 0) => diff.map((node) => {
       return `${space.repeat(depth * 2 - 1)}- ${node.name}: ${stringify(node.value)}`;
     case 'changed':
       return `${space.repeat(depth * 2 - 1)}+ ${node.name}: ${stringify(node.currentValue)}\n${space.repeat(depth * 2 - 1)}- ${node.name}: ${stringify(node.previousValue)}`;
-    case 'parental':
+    case 'nested':
       return `${space.repeat(depth * 2)}${node.name}: {\n${iter(node.children, depth).join('\n')}\n${space.repeat(depth * 2)}}`;
     default:
       throw new Error(`Unknown node status: '${node.status}'!`);
