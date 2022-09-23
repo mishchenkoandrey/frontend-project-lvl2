@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const add = (key) => {
+const add = (data1, data2, key) => {
   if (!_.has(data1, key)) {
     return { name: key, status: 'added', value: data2[key] };
   }
@@ -20,7 +20,7 @@ const add = (key) => {
 
 const genAST = (data1, data2) => {
   const dataKeys = _.union(_.keys(data1), _.keys(data2));
-  return dataKeys.map((key) => add(key));
+  return dataKeys.map((key) => add(data1, data2, key));
 };
 
 export default genAST;
