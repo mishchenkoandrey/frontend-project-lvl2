@@ -8,8 +8,8 @@ const runTests = (resultFilename, outputFormat) => {
   test.each(pairsOfFilenames)(
     'given %p and %p',
     (before, after) => {
-      expect(genDiff(`fixtures/${before}`, `fixtures/${after}`, outputFormat))
-        .toBe(fs.readFileSync(`fixtures/${resultFilename}`, 'utf-8'));
+      expect(genDiff(`__fixtures__/${before}`, `__fixtures__/${after}`, outputFormat))
+        .toBe(fs.readFileSync(`__fixtures__/${resultFilename}`, 'utf-8'));
     },
   );
 };
