@@ -4,28 +4,26 @@ const space = '  ';
 
 const iter = (diff, subDepth = 0) => diff.map((node) => {
   const depth = subDepth + 1;
-  const shortSpaceString = space.repeat(depth * 2 - 1);
-  const mediumSpaceString = space.repeat(depth * 2);
-  const longSpaceString = space.repeat(depth * 2 + 1);
+  const genSpaceString = (extraSpace = 0) => space.repeat(depth * 2 + extraSpace);
   const stringify = (value) => {
     if (!_.isObject(value)) {
       return value;
     }
     const keys = Object.keys(value);
-    const result = keys.map((key) => `${longSpaceString}${key}: ${value[key]}`);
-    return `{\n  ${result.join('\n')}\n  ${shortSpaceString}}`;
+    const result = keys.map((key) => `${genSpaceString(1)}${key}: ${value[key]}`);
+    return `{\n  ${result.join('\n')}\n  ${genSpaceString(-1)}}`;
   };
   switch (node.status) {
     case 'unchanged':
-      return `${shortSpaceString}  ${node.name}: ${stringify(node.value)}`;
+      return `${genSpaceString(-1)}  ${node.name}: ${stringify(node.value)}`;
     case 'added':
-      return `${shortSpaceString}+ ${node.name}: ${stringify(node.value)}`;
+      return `${genSpaceString(-1)}+ ${node.name}: ${stringify(node.value)}`;
     case 'deleted':
-      return `${shortSpaceString}- ${node.name}: ${stringify(node.value)}`;
+      return `${genSpaceString(-1)}- ${node.name}: ${stringify(node.value)}`;
     case 'changed':
-      return `${shortSpaceString}+ ${node.name}: ${stringify(node.currentValue)}\n${shortSpaceString}- ${node.name}: ${stringify(node.previousValue)}`;
+      return `${genSpaceString(-1)}+ ${node.name}: ${stringify(node.currentValue)}\n${genSpaceString(-1)}- ${node.name}: ${stringify(node.previousValue)}`;
     case 'nested':
-      return `${mediumSpaceString}${node.name}: {\n${iter(node.children, depth).join('\n')}\n${mediumSpaceString}}`;
+      return `${genSpaceString()}${node.name}: {\n${iter(node.children, depth).join('\n')}\n${genSpaceString()}}`;
     default:
       throw new Error(`Unknown node status: '${node.status}'!`);
   }
