@@ -12,12 +12,11 @@ const genAST = (data1, data2) => {
     if (data1[key] === data2[key]) {
       return { name: key, status: 'unchanged', value: data1[key] };
     }
-    if (!_.isObject(data1[key]) || !_.isObject(data2[key])) {
-      return {
+    return (!_.isObject(data1[key]) || !_.isObject(data2[key]))
+      ? {
         name: key, status: 'changed', previousValue: data1[key], currentValue: data2[key],
-      };
-    }
-    return { name: key, status: 'nested', children: genAST(data1[key], data2[key]) };
+      }
+      : { name: key, status: 'nested', children: genAST(data1[key], data2[key]) };
   };
   return dataKeys.map((key) => add(key));
 };
