@@ -5,7 +5,7 @@ run:
 	bin/gendiff.js
 
 install-deps:
-	npm ci
+	npm ci --legacy-peer-deps
 
 test:
 	npm test
