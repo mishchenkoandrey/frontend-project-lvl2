@@ -1,4 +1,3 @@
-// eslint.config.mjs
 import { globalIgnores } from 'eslint/config';
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
@@ -16,13 +15,11 @@ const compat = new FlatCompat({
 });
 
 export default [
-  // Игнорируем сборки
   globalIgnores(['**/dist']),
 
-  // Подключаем старые конфиги через compat
   ...compat.extends(
-    'airbnb-base', // airbnb base
-    'plugin:jest/recommended', // jest recommended
+    'airbnb-base',
+    'plugin:jest/recommended',
   ),
 
   {
