@@ -27,7 +27,7 @@ export default (extension, data) => {
     case '.json':
       return JSON.parse(data);
     case '.yml':
-      return yaml.safeLoad(data);
+      return yaml.load(data);
     case '.ini':
       return getParsedValueOfINI(ini.parse(data));
     default:
